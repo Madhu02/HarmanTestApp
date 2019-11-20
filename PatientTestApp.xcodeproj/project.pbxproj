@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0059FC0D2385765B008937EB /* PatientListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0059FC0C2385765B008937EB /* PatientListViewController.swift */; };
+		0059FC0F2385A0A5008937EB /* PatientDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0059FC0E2385A0A5008937EB /* PatientDetailsModel.swift */; };
+		0059FC112385A1E8008937EB /* PatientDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0059FC102385A1E8008937EB /* PatientDetailsViewModel.swift */; };
+		0059FC132385A218008937EB /* PatientDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0059FC122385A218008937EB /* PatientDetailViewController.swift */; };
 		9701E1C42385520C0030760E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9701E1C32385520C0030760E /* DataManager.swift */; };
 		9701E1C6238555030030760E /* patientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9701E1C5238555030030760E /* patientViewModel.swift */; };
 		9701E1C823855C610030760E /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9701E1C723855C610030760E /* SpinnerViewController.swift */; };
@@ -43,6 +47,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0059FC0C2385765B008937EB /* PatientListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientListViewController.swift; sourceTree = "<group>"; };
+		0059FC0E2385A0A5008937EB /* PatientDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientDetailsModel.swift; sourceTree = "<group>"; };
+		0059FC102385A1E8008937EB /* PatientDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientDetailsViewModel.swift; sourceTree = "<group>"; };
+		0059FC122385A218008937EB /* PatientDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientDetailViewController.swift; sourceTree = "<group>"; };
 		9701E1C32385520C0030760E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		9701E1C5238555030030760E /* patientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = patientViewModel.swift; sourceTree = "<group>"; };
 		9701E1C723855C610030760E /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
@@ -121,7 +129,6 @@
 				976C1E9023842E7D004FA166 /* ViewModels */,
 				976C1E8F23842E58004FA166 /* Controllers */,
 				976C1E5F23842AC3004FA166 /* AppDelegate.swift */,
-				976C1E6323842AC3004FA166 /* ViewController.swift */,
 				976C1E6523842AC3004FA166 /* Main.storyboard */,
 				976C1E6823842AC9004FA166 /* Assets.xcassets */,
 				976C1E6A23842AC9004FA166 /* LaunchScreen.storyboard */,
@@ -151,6 +158,9 @@
 		976C1E8F23842E58004FA166 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				976C1E6323842AC3004FA166 /* ViewController.swift */,
+				0059FC0C2385765B008937EB /* PatientListViewController.swift */,
+				0059FC122385A218008937EB /* PatientDetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -159,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				9701E1C5238555030030760E /* patientViewModel.swift */,
+				0059FC102385A1E8008937EB /* PatientDetailsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -168,6 +179,7 @@
 			children = (
 				976C1E9523843069004FA166 /* PatientsModel.swift */,
 				976C1EA023845CDE004FA166 /* TokenModel.swift */,
+				0059FC0E2385A0A5008937EB /* PatientDetailsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -323,8 +335,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0059FC0F2385A0A5008937EB /* PatientDetailsModel.swift in Sources */,
 				976C1E6423842AC3004FA166 /* ViewController.swift in Sources */,
+				0059FC132385A218008937EB /* PatientDetailViewController.swift in Sources */,
 				976C1E6023842AC3004FA166 /* AppDelegate.swift in Sources */,
+				0059FC0D2385765B008937EB /* PatientListViewController.swift in Sources */,
 				9701E1C6238555030030760E /* patientViewModel.swift in Sources */,
 				9701E1C823855C610030760E /* SpinnerViewController.swift in Sources */,
 				976C1E9A23843409004FA166 /* APIURLFactory.swift in Sources */,
@@ -334,6 +349,7 @@
 				9701E1C42385520C0030760E /* DataManager.swift in Sources */,
 				976C1E9423842FFB004FA166 /* APINetwork.swift in Sources */,
 				976C1E9D23843516004FA166 /* Constants.swift in Sources */,
+				0059FC112385A1E8008937EB /* PatientDetailsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

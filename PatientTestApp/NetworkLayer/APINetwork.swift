@@ -56,7 +56,7 @@ final class WebService {
                 /// Prepare error dictionary
                 let errorDict = [kErrCode: httpResponse.statusCode, kErrMessage: kErrMsgServer] as [String : Any]
                 debugPrint(errorDict)
-                completion(.error(error!, data))
+                completion(.error(error, data))
             }
             return
         }).resume()
@@ -71,6 +71,9 @@ extension URLRequest{
             self.httpBody = data
         }
         self.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        self.setValue("O", forHTTPHeaderField: "X-OB-Channel")
+ 
+        if let token = DataManager.shared.authToken?.token {
+            self.setValue(token, forHTTPHeaderField: "token")
+        }
     }
 }

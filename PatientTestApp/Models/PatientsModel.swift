@@ -8,22 +8,31 @@
 
 import Foundation
 
-struct PatientsModel: Codable {
+// MARK: - Welcome
+struct Patient: Codable {
     
-    var patientID : Int?
-    var patientName: String?
-    
+    var patients: [PatientList]
     enum CodingKeys: String, CodingKey {
-        case patientID = "Id"
-        case patientName = "FirstName"
-    }
-
-}
-
-struct PatientsResultsModel {
-    
-    var results = [PatientsModel]()
-    init(patientList: [PatientsModel]) {
-        self.results = patientList
+        case patients = "patients"
     }
 }
+
+// MARK: - Patient
+struct PatientList: Codable {
+    var id: Int
+    var firstName: String
+
+    enum CodingKeys: String, CodingKey {
+        case id = "Id"
+        case firstName = "FirstName"
+    }
+}
+
+
+//struct PatientsResultsModel {
+//
+//    var results = [PatientsModel]()
+//    init(patientList: [PatientsModel]) {
+//        self.results = patientList
+//    }
+//}

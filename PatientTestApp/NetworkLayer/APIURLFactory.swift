@@ -24,11 +24,15 @@ class URLFactory {
         return URL(string: urlString)!
     }
 
-    class func prepareAuthTokenResource() -> Resource<AuthToken>? {
+    class func prepareAuthTokenResource(username:String, password:String) -> Resource<AuthToken>? {
         let url = URLFactory.GetAuthTokenURL()
+//        let userCred = [
+//            "EmailAddress": "swsinterviewcandidate@shearwatersystems.com",
+//            "Password" : "Test1234!"
+//        ]
         let userCred = [
-            "EmailAddress": "swsinterviewcandidate@shearwatersystems.com",
-            "Password" : "Test1234!"
+            "EmailAddress": username,
+            "Password" : password
         ]
         let jsonEncoder = JSONEncoder()
         let jsonData = try! jsonEncoder.encode(userCred)
@@ -46,8 +50,33 @@ class URLFactory {
         
         }
     
-//    class func preparePatientsResource() -> Resource<PatientsModel> {
-//        
-//    }
+    class func preparePatientsResource() -> Resource<Patient>? {
+        let url = URLFactory.GetPatientsURL()
+        return Resource(url: url, method: .get) { (data) in
+
+            do {
+                let decoder = JSONDecoder()
+                let responseData = try decoder.decode(Patient.self, from: data as! Data)
+                return responseData
+            } catch {
+                print(error)
+            }
+            return nil
+        }
+    }
+    class func preparePatientDetailsResource() -> Resource<PatientDetails>? {
+        let url = URLFactory.GetPatientsURL()
+        return Resource(url: url, method: .get) { (data) in
+
+            do {
+                let decoder = JSONDecoder()
+                let responseData = try decoder.decode(PatientDetails.self, from: data as! Data)
+                return responseData
+            } catch {
+                print(error)
+            }
+            return nil
+        }
+    }
     
 }

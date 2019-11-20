@@ -10,5 +10,25 @@ import Foundation
 
 class PatientViewModel : NSObject {
     
+    var id: Int
+    var firstName: String
+    
+    init(patientlist: PatientList) {
+        self.id = patientlist.id
+        self.firstName = patientlist.firstName
+    }
+    
+    class func fetchAuthToken(username:String, password:String, completion: @escaping (_ tokenResponse: AuthToken?,_ error: Error?) -> ()) {
+        guard let resource = URLFactory.prepareAuthTokenResource(username: username, password: password) else { return }
+        WebService().load(resource) { (result) in
+            switch result{
+            case .error(let error, _):
+                completion(nil, error)
+            case .success(let response, _):
+                print(response)
+                completion(response,nil)
+            }
+        }
+    }
     
 }

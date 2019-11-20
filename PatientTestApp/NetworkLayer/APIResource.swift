@@ -35,7 +35,7 @@ extension Resource {
 
 enum Result<A> {
     case success(A, Data)
-    case error(Error, Data?)
+    case error(Error?, Data?)
     ///Intializer for Result
     init(_ value: A, data: Data) {
         self = .success(value, data)
