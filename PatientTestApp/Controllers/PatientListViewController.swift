@@ -79,17 +79,15 @@ extension PatientListViewController : UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+
         if (searchBar.text!.count > 0) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             let cellViewModel = filteredArrModel[indexPath.row]
             cell.textLabel?.text = "Name: \(cellViewModel.firstName)"
             cell.detailTextLabel?.text = "Id: \(cellViewModel.id)"
             return cell
         }
         else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             let cellViewModel = patientViewModel[indexPath.row]
             cell.textLabel?.text = "Name: \(cellViewModel.firstName)"
             cell.detailTextLabel?.text = "Id: \(cellViewModel.id)"
@@ -99,7 +97,16 @@ extension PatientListViewController : UITableViewDelegate, UITableViewDataSource
         
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        var patientDetialVC = UIViewController()
+        if (searchBar.text!.count > 0) {
+            let cellViewModel = self.filteredArrModel[indexPath.row]
+            patientDetialVC = PatientDetailViewController.init(patientdetails: cellViewModel)
+        } else {
+            let cellViewModel = self.patientViewModel[indexPath.row]
+            patientDetialVC = PatientDetailViewController.init(patientdetails: cellViewModel)
+        }
+        self.navigationController?.pushViewController(patientDetialVC, animated: true)
+
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange textSearched: String) {
@@ -115,19 +122,5 @@ extension PatientListViewController : UITableViewDelegate, UITableViewDataSource
             searchBar.resignFirstResponder()
             self.tableView.reloadData()
     }
-//    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-//        searchActive = true;
-//    }
-//
-//    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-//        searchActive = false;
-//    }
-//
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        searchActive = false;
-//    }
-//
-//    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
-//        searchActive = false;
-//    }
+
 }

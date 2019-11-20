@@ -15,21 +15,21 @@ class URLFactory {
     static let shared = URLFactory()
     private init() { }
     
-    class func GetPatientsURL() -> URL {
+    private func GetPatientsURL() -> URL {
         let urlString = "\(URLFactory.shared.baseURL)/androidtest/patients"
         return URL(string: urlString)!
     }
-    class func GetAuthTokenURL() -> URL {
+    private func GetAuthTokenURL() -> URL {
         let urlString = "\(URLFactory.shared.baseURL)/androidtest/auth"
         return URL(string: urlString)!
     }
+    private func GetPatientDetailsURL() -> String {
+        let urlString = "\(URLFactory.shared.baseURL)/androidtest/patient/"
+        return urlString
+    }
 
     class func prepareAuthTokenResource(username:String, password:String) -> Resource<AuthToken>? {
-        let url = URLFactory.GetAuthTokenURL()
-//        let userCred = [
-//            "EmailAddress": "swsinterviewcandidate@shearwatersystems.com",
-//            "Password" : "Test1234!"
-//        ]
+        let url = URLFactory().GetAuthTokenURL()
         let userCred = [
             "EmailAddress": username,
             "Password" : password
@@ -51,7 +51,7 @@ class URLFactory {
         }
     
     class func preparePatientsResource() -> Resource<Patient>? {
-        let url = URLFactory.GetPatientsURL()
+        let url = URLFactory().GetPatientsURL()
         return Resource(url: url, method: .get) { (data) in
 
             do {
@@ -64,9 +64,10 @@ class URLFactory {
             return nil
         }
     }
-    class func preparePatientDetailsResource() -> Resource<PatientDetails>? {
-        let url = URLFactory.GetPatientsURL()
-        return Resource(url: url, method: .get) { (data) in
+    class func preparePatientDetailsResource(Id:Int) -> Resource<PatientDetails>? {
+        let urlStr = URLFactory().GetPatientDetailsURL() + String(Id)
+        let url = URL(string:urlStr)
+        return Resource(url: url!, method: .get) { (data) in
 
             do {
                 let decoder = JSONDecoder()

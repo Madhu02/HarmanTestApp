@@ -8,7 +8,7 @@
 
 import Foundation
 
-// MARK: - Welcome
+// MARK: - Patient Model
 struct Patient: Codable {
     
     var patients: [PatientList]
@@ -17,7 +17,7 @@ struct Patient: Codable {
     }
 }
 
-// MARK: - Patient
+// MARK: - Patients List
 struct PatientList: Codable {
     var id: Int
     var firstName: String

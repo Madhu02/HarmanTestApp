@@ -11,8 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var usernameTextfield: UITextField!
     @IBOutlet weak var passwordTextfield: UITextField!
-    let webservice = WebService()
-    var tokenViewModel = PatientViewModel()
+//    var tokenViewModel = PatientViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,18 +20,18 @@ class ViewController: UIViewController {
         
     }
     
-//    func fetchAuthToken(username:String, password:String, completion: @escaping (_ tokenResponse: AuthToken?,_ error: Error?) -> ()) {
-//        guard let resource = URLFactory.prepareAuthTokenResource(username: username, password: password) else { return }
-//        webservice.load(resource) { (result) in
-//            switch result{
-//            case .error(let error, _):
-//                completion(nil, error)
-//            case .success(let response, _):
-//                print(response)
-//                completion(response,nil)
-//            }
-//        }
-//    }
+    func fetchAuthToken(username:String, password:String, completion: @escaping (_ tokenResponse: AuthToken?,_ error: Error?) -> ()) {
+        guard let resource = URLFactory.prepareAuthTokenResource(username: username, password: password) else { return }
+        WebService().load(resource) { (result) in
+            switch result{
+            case .error(let error, _):
+                completion(nil, error)
+            case .success(let response, _):
+                print(response)
+                completion(response,nil)
+            }
+        }
+    }
     
     @IBAction func loginButtonAction(_ sender: Any) {
         guard let usernameField = usernameTextfield.text, let passwordField = passwordTextfield.text, !usernameField.isEmpty, !passwordField.isEmpty else {
@@ -41,12 +40,12 @@ class ViewController: UIViewController {
         }
         createSpinnerView()
         
-//        fetchAuthToken(username: self.usernameTextfield.text!, password: self.passwordTextfield.text!) { (token, errorObj) in
-//            DataManager.shared.authToken = token
-//            DispatchQueue.main.async {
-//                self.performSegue(withIdentifier: "patientList", sender: self)
-//            }
-//        }
+        fetchAuthToken(username: self.usernameTextfield.text!, password: self.passwordTextfield.text!) { (token, errorObj) in
+            DataManager.shared.authToken = token
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "patientList", sender: self)
+            }
+        }
     }
     func ShowAlert() {
         let alertController = UIAlertController(title: "Alert..!!", message:

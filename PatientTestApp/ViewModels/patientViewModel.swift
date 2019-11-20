@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PatientViewModel : NSObject {
+class PatientViewModel {
     
     var id: Int
     var firstName: String
@@ -17,6 +17,8 @@ class PatientViewModel : NSObject {
         self.id = patientlist.id
         self.firstName = patientlist.firstName
     }
+    
+    
     
     class func fetchAuthToken(username:String, password:String, completion: @escaping (_ tokenResponse: AuthToken?,_ error: Error?) -> ()) {
         guard let resource = URLFactory.prepareAuthTokenResource(username: username, password: password) else { return }
