@@ -7,3 +7,13 @@
 //
 
 import Foundation
+
+class DataManager : NSObject {
+    
+    
+    static let shared = DataManager()
+    private override init() {}
+    
+    var authToken: AuthToken?
+    
+}

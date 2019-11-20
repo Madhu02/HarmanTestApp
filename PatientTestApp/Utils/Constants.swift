@@ -7,3 +7,23 @@
 //
 
 import Foundation
+
+
+
+/// Network Error
+let kErrCode                    = "errorCode"
+let kErrCodeServer              = "ERR04"
+let kErrMessage                 = "errorMessage"
+let kErrMsgServer               = "Server error. Please try again later."
+let kErrMsgNoData               = "No Data"
+let kErrParseData               = "Couldn't parse data"
+let kErrDictServer              = [kErrCode:kErrCodeServer, kErrMessage: kErrMsgServer]
+
+
+/// HTTP Headers and Values
+let kCSRFToken                  = "X-CSRFToken"
+let kCSRFTokenName              = "csrftoken"
+let kReferer                    = "Referer"
+let kContentType                = "Content-Type"
+let kUserAgent                  = "User-Agent"
+let kContentTypeVal             = "application/json"

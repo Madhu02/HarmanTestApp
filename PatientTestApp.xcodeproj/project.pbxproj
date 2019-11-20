@@ -7,14 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9701E1C42385520C0030760E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9701E1C32385520C0030760E /* DataManager.swift */; };
+		9701E1C6238555030030760E /* patientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9701E1C5238555030030760E /* patientViewModel.swift */; };
+		9701E1C823855C610030760E /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9701E1C723855C610030760E /* SpinnerViewController.swift */; };
 		976C1E6023842AC3004FA166 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976C1E5F23842AC3004FA166 /* AppDelegate.swift */; };
-		976C1E6223842AC3004FA166 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976C1E6123842AC3004FA166 /* SceneDelegate.swift */; };
 		976C1E6423842AC3004FA166 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976C1E6323842AC3004FA166 /* ViewController.swift */; };
 		976C1E6723842AC3004FA166 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 976C1E6523842AC3004FA166 /* Main.storyboard */; };
 		976C1E6923842AC9004FA166 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 976C1E6823842AC9004FA166 /* Assets.xcassets */; };
 		976C1E6C23842AC9004FA166 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 976C1E6A23842AC9004FA166 /* LaunchScreen.storyboard */; };
 		976C1E7723842AC9004FA166 /* PatientTestAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976C1E7623842AC9004FA166 /* PatientTestAppTests.swift */; };
 		976C1E8223842AC9004FA166 /* PatientTestAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976C1E8123842AC9004FA166 /* PatientTestAppUITests.swift */; };
+		976C1E9423842FFB004FA166 /* APINetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976C1E9323842FFB004FA166 /* APINetwork.swift */; };
+		976C1E9623843069004FA166 /* PatientsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976C1E9523843069004FA166 /* PatientsModel.swift */; };
+		976C1E98238433A0004FA166 /* APIResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976C1E97238433A0004FA166 /* APIResource.swift */; };
+		976C1E9A23843409004FA166 /* APIURLFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976C1E9923843409004FA166 /* APIURLFactory.swift */; };
+		976C1E9D23843516004FA166 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976C1E9C23843516004FA166 /* Constants.swift */; };
+		976C1EA123845CDE004FA166 /* TokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976C1EA023845CDE004FA166 /* TokenModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,9 +43,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9701E1C32385520C0030760E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		9701E1C5238555030030760E /* patientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = patientViewModel.swift; sourceTree = "<group>"; };
+		9701E1C723855C610030760E /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
 		976C1E5C23842AC3004FA166 /* PatientTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PatientTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		976C1E5F23842AC3004FA166 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		976C1E6123842AC3004FA166 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		976C1E6323842AC3004FA166 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		976C1E6623842AC3004FA166 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		976C1E6823842AC9004FA166 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +59,12 @@
 		976C1E7D23842AC9004FA166 /* PatientTestAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PatientTestAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		976C1E8123842AC9004FA166 /* PatientTestAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientTestAppUITests.swift; sourceTree = "<group>"; };
 		976C1E8323842AC9004FA166 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		976C1E9323842FFB004FA166 /* APINetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APINetwork.swift; sourceTree = "<group>"; };
+		976C1E9523843069004FA166 /* PatientsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientsModel.swift; sourceTree = "<group>"; };
+		976C1E97238433A0004FA166 /* APIResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResource.swift; sourceTree = "<group>"; };
+		976C1E9923843409004FA166 /* APIURLFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIURLFactory.swift; sourceTree = "<group>"; };
+		976C1E9C23843516004FA166 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		976C1EA023845CDE004FA166 /* TokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +115,12 @@
 		976C1E5E23842AC3004FA166 /* PatientTestApp */ = {
 			isa = PBXGroup;
 			children = (
+				976C1E9B23843500004FA166 /* Utils */,
+				976C1E9223842FCC004FA166 /* NetworkLayer */,
+				976C1E9123842E85004FA166 /* Models */,
+				976C1E9023842E7D004FA166 /* ViewModels */,
+				976C1E8F23842E58004FA166 /* Controllers */,
 				976C1E5F23842AC3004FA166 /* AppDelegate.swift */,
-				976C1E6123842AC3004FA166 /* SceneDelegate.swift */,
 				976C1E6323842AC3004FA166 /* ViewController.swift */,
 				976C1E6523842AC3004FA166 /* Main.storyboard */,
 				976C1E6823842AC9004FA166 /* Assets.xcassets */,
@@ -126,6 +146,50 @@
 				976C1E8323842AC9004FA166 /* Info.plist */,
 			);
 			path = PatientTestAppUITests;
+			sourceTree = "<group>";
+		};
+		976C1E8F23842E58004FA166 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		976C1E9023842E7D004FA166 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				9701E1C5238555030030760E /* patientViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		976C1E9123842E85004FA166 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				976C1E9523843069004FA166 /* PatientsModel.swift */,
+				976C1EA023845CDE004FA166 /* TokenModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		976C1E9223842FCC004FA166 /* NetworkLayer */ = {
+			isa = PBXGroup;
+			children = (
+				976C1E9323842FFB004FA166 /* APINetwork.swift */,
+				976C1E97238433A0004FA166 /* APIResource.swift */,
+				976C1E9923843409004FA166 /* APIURLFactory.swift */,
+			);
+			path = NetworkLayer;
+			sourceTree = "<group>";
+		};
+		976C1E9B23843500004FA166 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				976C1E9C23843516004FA166 /* Constants.swift */,
+				9701E1C32385520C0030760E /* DataManager.swift */,
+				9701E1C723855C610030760E /* SpinnerViewController.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,7 +325,15 @@
 			files = (
 				976C1E6423842AC3004FA166 /* ViewController.swift in Sources */,
 				976C1E6023842AC3004FA166 /* AppDelegate.swift in Sources */,
-				976C1E6223842AC3004FA166 /* SceneDelegate.swift in Sources */,
+				9701E1C6238555030030760E /* patientViewModel.swift in Sources */,
+				9701E1C823855C610030760E /* SpinnerViewController.swift in Sources */,
+				976C1E9A23843409004FA166 /* APIURLFactory.swift in Sources */,
+				976C1EA123845CDE004FA166 /* TokenModel.swift in Sources */,
+				976C1E9623843069004FA166 /* PatientsModel.swift in Sources */,
+				976C1E98238433A0004FA166 /* APIResource.swift in Sources */,
+				9701E1C42385520C0030760E /* DataManager.swift in Sources */,
+				976C1E9423842FFB004FA166 /* APINetwork.swift in Sources */,
+				976C1E9D23843516004FA166 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +509,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EFDNRX6A2P;
 				INFOPLIST_FILE = PatientTestApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -455,6 +528,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EFDNRX6A2P;
 				INFOPLIST_FILE = PatientTestApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

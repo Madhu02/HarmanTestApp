@@ -7,3 +7,23 @@
 //
 
 import Foundation
+
+struct PatientsModel: Codable {
+    
+    var patientID : Int?
+    var patientName: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case patientID = "Id"
+        case patientName = "FirstName"
+    }
+
+}
+
+struct PatientsResultsModel {
+    
+    var results = [PatientsModel]()
+    init(patientList: [PatientsModel]) {
+        self.results = patientList
+    }
+}
