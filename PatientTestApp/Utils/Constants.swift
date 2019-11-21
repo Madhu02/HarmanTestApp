@@ -21,9 +21,6 @@ let kErrDictServer              = [kErrCode:kErrCodeServer, kErrMessage: kErrMsg
 
 
 /// HTTP Headers and Values
-let kCSRFToken                  = "X-CSRFToken"
-let kCSRFTokenName              = "csrftoken"
-let kReferer                    = "Referer"
+
 let kContentType                = "Content-Type"
-let kUserAgent                  = "User-Agent"
 let kContentTypeVal             = "application/json"

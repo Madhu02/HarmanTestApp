@@ -43,6 +43,7 @@ class ViewController: UIViewController {
         fetchAuthToken(username: self.usernameTextfield.text!, password: self.passwordTextfield.text!) { (token, errorObj) in
             DataManager.shared.authToken = token
             DispatchQueue.main.async {
+                self.hideSpinnerView()
                 self.performSegue(withIdentifier: "patientList", sender: self)
             }
         }
@@ -55,12 +56,15 @@ class ViewController: UIViewController {
     }
     func createSpinnerView() {
         let child = SpinnerViewController()
-        
         // add the spinner view controller
         addChild(child)
         child.view.frame = view.frame
         view.addSubview(child.view)
         child.didMove(toParent: self)
+    }
+    func hideSpinnerView(){
+        let child = SpinnerViewController()
+        child.removeFromParent()
     }
     
 }

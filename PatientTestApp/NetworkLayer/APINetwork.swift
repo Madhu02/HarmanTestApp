@@ -7,20 +7,21 @@
 //
 
 import Foundation
-
+///HTTP Mesthods
 enum HttpMethod<Body> {
     case get
     case post(Body)
 }
 
 extension HttpMethod {
+    /// returns String for respective HttpMethod
     var method: String {
         switch self {
         case .get: return "GET"
         case .post: return "POST"
         }
     }
-    
+    /// Maps body with HTTP Method
     func map<B>(f: (Body) -> B) -> HttpMethod<B> {
         switch self {
         case .get: return .get
@@ -33,6 +34,12 @@ extension HttpMethod {
 
 final class WebService {
     
+    /**
+    This makes an async call to server to load data.
+    - Parameters:
+       - resource: Takes a resource of Type.A which contains the HTTP Method and the URL.
+       - completion: A escaping closure which returns the Result which contain the Model of Type.A or Error if any.
+    */
     func load<A>(_ resource: Resource<A>, completion: @escaping (Result<A>) -> ()) {
         let request = URLRequest(resource: resource)
         URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
@@ -62,8 +69,14 @@ final class WebService {
         }).resume()
     }
 }
+///Extension of URLRequest
 
 extension URLRequest{
+    /**
+    Initializer which create the URLRequest by assigning URL, HTTPMethod, and other HTTPHeaderField.
+    - Parameters:
+       - resource: Takes a resource of Type.A and assigns the URL, Method type from Resource.
+    */
     init<A>(resource: Resource<A>) {
         self.init(url: resource.url)
         self.httpMethod = resource.method.method

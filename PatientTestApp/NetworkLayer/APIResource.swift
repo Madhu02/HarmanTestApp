@@ -15,6 +15,13 @@ struct Resource<A: Decodable> {
 }
 
 extension Resource {
+    /**
+     This prepares the resource and decode the the response
+     - Parameters:
+        - url: URL of the API
+        - method: HTTP Method (eg. GET/POST) with default value .get
+        - parseJSON: A escaping closure which accepts Any and return the Model of Type.A once the response is received by the Server.
+    */
     init(url: URL, method: HttpMethod<Data> = .get, parseJSON: @escaping (Any) -> A?) {
         self.url = url
         self.method = method.map { json in
@@ -32,6 +39,7 @@ extension Resource {
         }
     }
 }
+/// Result of API Response
 
 enum Result<A> {
     case success(A, Data)

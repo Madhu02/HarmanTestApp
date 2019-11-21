@@ -13,16 +13,37 @@ class PatientDetailViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var addressLAbel: UILabel!
     @IBOutlet weak var NHSNumber: UILabel!
-    
+    @IBOutlet weak var cardView: UIView!
+
     var patientId = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.navigationItem.title = "Patient Details"
+
+        MakeAPICall()
+    }
+
+    func createSpinnerView() {
+        let child = SpinnerViewController()
+        // add the spinner view controller
+        addChild(child)
+        child.view.frame = view.frame
+        view.addSubview(child.view)
+        child.didMove(toParent: self)
+    }
+    func hideSpinnerView(){
+        self.children.forEach({ $0.willMove(toParent: nil); $0.view.removeFromSuperview(); $0.removeFromParent() })
+    }
+    func MakeAPICall(){
+        createSpinnerView()
         fetchPatientDetails { (patientDetailsData, error) in
             let patientDetailViewModel = PatientDetailsViewModel(patientlist: patientDetailsData!)
             DispatchQueue.main.async {
+                self.hideSpinnerView()
+                
                 if let firstname = patientDetailViewModel.FirstName, let lastname = patientDetailViewModel.LastName {
                     self.nameLabel.text = "Name: \(lastname.uppercased()), \(firstname)"
                 }
@@ -33,7 +54,6 @@ class PatientDetailViewController: UIViewController {
             }
         }
     }
-
     
     func fetchPatientDetails(completion: @escaping (_ response:PatientDetails?, _ error:Error?) -> ()){
         
