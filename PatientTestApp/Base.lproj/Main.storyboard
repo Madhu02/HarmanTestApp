@@ -119,9 +119,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="1cA-MS-i1a" kind="show" id="4jX-8y-iUA"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
@@ -152,13 +149,13 @@
         <!--Patient Detail View Controller-->
         <scene sceneID="TI4-Wy-tpM">
             <objects>
-                <viewController id="1cA-MS-i1a" customClass="PatientDetailViewController" customModule="PatientTestApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailController" id="1cA-MS-i1a" customClass="PatientDetailViewController" customModule="PatientTestApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="B54-Ra-zbG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdT-9x-q57">
-                                <rect key="frame" x="32" y="139" width="324" height="40"/>
+                                <rect key="frame" x="32" y="95" width="324" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="GBM-4c-4Oy"/>
                                 </constraints>
@@ -167,13 +164,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J4W-HL-CEH">
-                                <rect key="frame" x="32" y="198" width="324" height="21"/>
+                                <rect key="frame" x="32" y="154" width="324" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Amc-Hj-Nxs">
-                                <rect key="frame" x="32" y="237" width="324" height="41"/>
+                                <rect key="frame" x="32" y="193" width="324" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -206,7 +203,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dvG-C5-K7t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1735" y="90"/>
+            <point key="canvasLocation" x="1777" y="99"/>
         </scene>
     </scenes>
 </document>

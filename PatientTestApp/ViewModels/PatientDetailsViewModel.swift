@@ -15,7 +15,7 @@ class PatientDetailsViewModel: NSObject {
     var LastName: String?
     var Address: String?
     var NhsNumber: String?
-    
+    var patientDetails: PatientDetails?
     init(patientlist: PatientDetails) {
         self.Id = patientlist.Id
         self.FirstName = patientlist.FirstName

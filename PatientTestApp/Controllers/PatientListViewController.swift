@@ -97,15 +97,20 @@ extension PatientListViewController : UITableViewDelegate, UITableViewDataSource
         
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var patientDetialVC = UIViewController()
+        
+        let patientDetialVC = storyboard?.instantiateViewController(withIdentifier: "DetailController") as! PatientDetailViewController
         if (searchBar.text!.count > 0) {
             let cellViewModel = self.filteredArrModel[indexPath.row]
-            patientDetialVC = PatientDetailViewController.init(patientdetails: cellViewModel)
+            let patientID = String(cellViewModel.id)
+            patientDetialVC.patientId = patientID
+
         } else {
             let cellViewModel = self.patientViewModel[indexPath.row]
-            patientDetialVC = PatientDetailViewController.init(patientdetails: cellViewModel)
+            let patientID = String(cellViewModel.id)
+            patientDetialVC.patientId = patientID
         }
         self.navigationController?.pushViewController(patientDetialVC, animated: true)
+        
 
     }
     

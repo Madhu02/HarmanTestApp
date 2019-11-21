@@ -10,9 +10,10 @@ import Foundation
 
 class PatientViewModel {
     
+    
     var id: Int
     var firstName: String
-    
+    var patientDetails: PatientList?
     init(patientlist: PatientList) {
         self.id = patientlist.id
         self.firstName = patientlist.firstName

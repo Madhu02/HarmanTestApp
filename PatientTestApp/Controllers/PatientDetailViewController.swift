@@ -14,29 +14,30 @@ class PatientDetailViewController: UIViewController {
     @IBOutlet weak var addressLAbel: UILabel!
     @IBOutlet weak var NHSNumber: UILabel!
     
-    var patientData = PatientViewModel()
+    var patientId = ""
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
-        fetchPatientDetails { (data, error) in
-            print(data)
+        fetchPatientDetails { (patientDetailsData, error) in
+            let patientDetailViewModel = PatientDetailsViewModel(patientlist: patientDetailsData!)
+            DispatchQueue.main.async {
+                if let firstname = patientDetailViewModel.FirstName, let lastname = patientDetailViewModel.LastName {
+                    self.nameLabel.text = "Name: \(lastname.uppercased()), \(firstname)"
+                }
+                if let address = patientDetailViewModel.Address,let nhsNumer = patientDetailViewModel.NhsNumber  {
+                    self.addressLAbel.text = "Address: \(address)"
+                    self.NHSNumber.text = "NSHNumber: \(nhsNumer)"
+                }
+            }
         }
     }
-    
-    init(patientdetails:PatientViewModel) {
-        self.patientData = patientdetails
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-       super.init(coder: aDecoder)
-    }
+
     
     func fetchPatientDetails(completion: @escaping (_ response:PatientDetails?, _ error:Error?) -> ()){
         
-        let resource = URLFactory.preparePatientDetailsResource(Id: self.patientData.id)
+        let resource = URLFactory.preparePatientDetailsResource(Id: self.patientId)
         WebService().load(resource!) { (result) in
             switch result{
             case .error(let error, _):

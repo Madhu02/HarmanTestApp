@@ -64,8 +64,8 @@ class URLFactory {
             return nil
         }
     }
-    class func preparePatientDetailsResource(Id:Int) -> Resource<PatientDetails>? {
-        let urlStr = URLFactory().GetPatientDetailsURL() + String(Id)
+    class func preparePatientDetailsResource(Id:String) -> Resource<PatientDetails>? {
+        let urlStr = URLFactory().GetPatientDetailsURL() + Id
         let url = URL(string:urlStr)
         return Resource(url: url!, method: .get) { (data) in
 
