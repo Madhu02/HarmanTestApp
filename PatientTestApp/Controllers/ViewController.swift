@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         
         
     }
-    
+    //API Call method for fetching Token
     func fetchAuthToken(username:String, password:String, completion: @escaping (_ tokenResponse: AuthToken?,_ error: Error?) -> ()) {
         guard let resource = URLFactory.prepareAuthTokenResource(username: username, password: password) else { return }
         WebService().load(resource) { (result) in

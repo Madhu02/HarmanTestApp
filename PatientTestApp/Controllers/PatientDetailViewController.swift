@@ -31,16 +31,16 @@ class PatientDetailViewController: UIViewController {
         
         let customViewModel = PatientDetailsViewModel(patientId: patientId)
         viewModel = customViewModel
-        viewModel.fetchPatientDetails { (patientDetailsData, error) in
+        viewModel.fetchPatientDetails { [weak self](patientDetailsData, error) in
             DispatchQueue.main.async {
-                self.hideSpinnerView()
-                let patientData = self.viewModel.getPatientDetails()
-                if let firstname = patientData.FirstName, let lastname = patientData.LastName {
-                    self.nameLabel.text = "Name: \(lastname.uppercased()), \(firstname)"
+                self?.hideSpinnerView()
+                let patientData = self?.viewModel.getPatientDetails()
+                if let firstname = patientData?.FirstName, let lastname = patientData?.LastName {
+                    self?.nameLabel.text = "Name: \(lastname.uppercased()), \(firstname)"
                 }
-                if let address = patientData.Address,let nhsNumer = patientData.NhsNumber  {
-                    self.addressLAbel.text = "Address: \(address)"
-                    self.NHSNumber.text = "NSHNumber: \(nhsNumer)"
+                if let address = patientData?.Address,let nhsNumer = patientData?.NhsNumber  {
+                    self?.addressLAbel.text = "Address: \(address)"
+                    self?.NHSNumber.text = "NSHNumber: \(nhsNumer)"
                 }
             }
         }

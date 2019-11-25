@@ -7,10 +7,14 @@
 //
 
 import Foundation
-
+//Singleton Class
 class DataManager : NSObject {
     
-    
+    /**
+     This Class stores the Auth Token
+        - shared: Shared instance of DataManager
+        - authToken: Stores the instance of AuthToken model class.
+    */
     static let shared = DataManager()
     private override init() {}
     

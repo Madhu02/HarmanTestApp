@@ -84,7 +84,7 @@ extension URLRequest{
             self.httpBody = data
         }
         self.setValue("application/json", forHTTPHeaderField: "Content-Type")
- 
+        //
         if let token = DataManager.shared.authToken?.token {
             self.setValue(token, forHTTPHeaderField: "token")
         }

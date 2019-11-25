@@ -12,9 +12,6 @@ class PatientListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     let webservice = WebService()
-    var patientViewModel = [PatientViewModel]()
-    var filteredArrModel = [PatientViewModel]()
-    
     var viewModel = PatientViewModel()
     var searchActive : Bool = false
     
