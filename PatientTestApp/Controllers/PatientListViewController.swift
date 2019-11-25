@@ -9,32 +9,32 @@
 import UIKit
 
 class PatientListViewController: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
     let webservice = WebService()
     var patientViewModel = [PatientViewModel]()
     var filteredArrModel = [PatientViewModel]()
+    
+    var viewModel = PatientViewModel()
     var searchActive : Bool = false
-
+    
     lazy var searchBar:UISearchBar = UISearchBar()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.]
         self.navigationItem.title = "Patients List"
-        fetchPatientsList { (arrPatients, error) in
-
-            self.patientViewModel = arrPatients?.patients.map({ return PatientViewModel(patientlist: $0) }) ?? []
+                
+        viewModel.fetchPatientsList { [weak self] (arrPatients, error) in
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                self?.tableView.reloadData()
             }
         }
-        
         setupViewElements()
     }
-
-
+    
+    
     func setupViewElements(){
         
         self.navigationItem.hidesBackButton = true
@@ -50,47 +50,32 @@ class PatientListViewController: UIViewController {
         } else {
             // Fallback on earlier versions
         }
-
-    }
-    
-    func fetchPatientsList(completion: @escaping (_ response:Patient?, _ error:Error?) -> ()){
         
-        let resource = URLFactory.preparePatientsResource()
-        webservice.load(resource!) { (result) in
-            switch result{
-            case .error(let error, _):
-                completion(nil, error)
-            case .success(let response, _):
-                print(response)
-                completion(response,nil)
-            }
-            
-        }
     }
-
 }
-
+//MARK: UITableview and UISearchBar Delegate and DataSource Methods
 extension PatientListViewController : UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (searchBar.text!.count > 0) {
-            return self.filteredArrModel.count
+        
+        
+        if (viewModel.isSearched) {
+            return viewModel.getFilteredPatientData()
         }
-        return self.patientViewModel.count
+        return viewModel.getNoOfRowsForSection()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-
+        
+        let patientVM = viewModel.getPatientAtIndex(atIndex: indexPath.row)
         if (searchBar.text!.count > 0) {
-            let cellViewModel = filteredArrModel[indexPath.row]
-            cell.textLabel?.text = "Name: \(cellViewModel.firstName)"
-            cell.detailTextLabel?.text = "Id: \(cellViewModel.id)"
+            cell.textLabel?.text = "Name: \(patientVM.firstName)"
+            cell.detailTextLabel?.text = "Id: \(patientVM.id)"
             return cell
         }
         else {
-            let cellViewModel = patientViewModel[indexPath.row]
-            cell.textLabel?.text = "Name: \(cellViewModel.firstName)"
-            cell.detailTextLabel?.text = "Id: \(cellViewModel.id)"
+            cell.textLabel?.text = "Name: \(patientVM.firstName)"
+            cell.detailTextLabel?.text = "Id: \(patientVM.id)"
             return cell
         }
         
@@ -99,33 +84,35 @@ extension PatientListViewController : UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let patientDetialVC = storyboard?.instantiateViewController(withIdentifier: "DetailController") as! PatientDetailViewController
+        let patientDetails = viewModel.getPatientAtIndex(atIndex: indexPath.row)
         if (searchBar.text!.count > 0) {
-            let cellViewModel = self.filteredArrModel[indexPath.row]
-            let patientID = String(cellViewModel.id)
+            let patientID = String(patientDetails.id)
             patientDetialVC.patientId = patientID
-
+            
         } else {
-            let cellViewModel = self.patientViewModel[indexPath.row]
-            let patientID = String(cellViewModel.id)
+            let patientID = String(patientDetails.id)
             patientDetialVC.patientId = patientID
         }
         self.navigationController?.pushViewController(patientDetialVC, animated: true)
         
-
+        
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange textSearched: String) {
         
-        filteredArrModel.removeAll()
-        let filteredArrModelTemp = patientViewModel.filter { ($0.firstName.contains(textSearched))}
-        self.filteredArrModel = filteredArrModelTemp
+        viewModel.filteredArray.removeAll()
+        let filteredArrModelTemp = viewModel.dataSourceArray.filter { ($0.firstName.contains(textSearched))}
+        viewModel.filteredArray = filteredArrModelTemp
+        viewModel.isSearched = true
         self.tableView.reloadData()
     }
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-            searchBar.showsCancelButton = true
-            searchBar.text = ""
-            searchBar.resignFirstResponder()
-            self.tableView.reloadData()
+        searchBar.showsCancelButton = true
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        viewModel.isSearched = false
+        self.tableView.reloadData()
     }
-
+    
 }

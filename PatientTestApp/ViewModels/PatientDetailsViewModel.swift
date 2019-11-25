@@ -9,20 +9,40 @@
 import UIKit
 
 class PatientDetailsViewModel: NSObject {
-
-    var Id: Int?
-    var FirstName: String?
-    var LastName: String?
-    var Address: String?
-    var NhsNumber: String?
-    var patientDetails: PatientDetails?
-    init(patientlist: PatientDetails) {
-        self.Id = patientlist.Id
-        self.FirstName = patientlist.FirstName
-        self.LastName = patientlist.LastName
-        self.Address = patientlist.Address
-        self.NhsNumber = patientlist.NhsNumber
+    //Holds the Patient Id
+    var Id: String?
+    
+    var apiHandler = WebService()
+    fileprivate var patientDetails = PatientDetails()
+    
+    //init
+    override init() {
+        
     }
-
+    //Custom init for Dependency Injection
+    init(patientId:String) {
+        self.Id = patientId
+    }
+    
+    //API Call for fetching Patient Details
+    func fetchPatientDetails(completion: @escaping (_ response:PatientDetails?, _ error:Error?) -> ()){
+        
+        let resource = URLFactory.preparePatientDetailsResource(Id: self.Id!)
+        apiHandler.load(resource!) { (result) in
+            switch result{
+            case .error(let error, _):
+                completion(nil, error)
+            case .success(let response, _):
+                print(response)
+                self.patientDetails = response
+                completion(response,nil)
+            }
+            
+        }
+    }
+    //Returns Patient Details
+    func getPatientDetails() -> PatientDetails {
+        return patientDetails
+    }
     
 }

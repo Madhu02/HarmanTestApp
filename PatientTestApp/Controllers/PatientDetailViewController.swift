@@ -9,23 +9,44 @@
 import UIKit
 
 class PatientDetailViewController: UIViewController {
-
+    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var addressLAbel: UILabel!
     @IBOutlet weak var NHSNumber: UILabel!
     @IBOutlet weak var cardView: UIView!
-
+    
     var patientId = ""
-
+    var viewModel = PatientDetailsViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         self.navigationItem.title = "Patient Details"
-
         MakeAPICall()
     }
-
+    
+    func MakeAPICall(){
+        createSpinnerView()
+        
+        let customViewModel = PatientDetailsViewModel(patientId: patientId)
+        viewModel = customViewModel
+        viewModel.fetchPatientDetails { (patientDetailsData, error) in
+            DispatchQueue.main.async {
+                self.hideSpinnerView()
+                let patientData = self.viewModel.getPatientDetails()
+                if let firstname = patientData.FirstName, let lastname = patientData.LastName {
+                    self.nameLabel.text = "Name: \(lastname.uppercased()), \(firstname)"
+                }
+                if let address = patientData.Address,let nhsNumer = patientData.NhsNumber  {
+                    self.addressLAbel.text = "Address: \(address)"
+                    self.NHSNumber.text = "NSHNumber: \(nhsNumer)"
+                }
+            }
+        }
+        
+    }
+    
     func createSpinnerView() {
         let child = SpinnerViewController()
         // add the spinner view controller
@@ -34,50 +55,18 @@ class PatientDetailViewController: UIViewController {
         view.addSubview(child.view)
         child.didMove(toParent: self)
     }
+    
     func hideSpinnerView(){
         self.children.forEach({ $0.willMove(toParent: nil); $0.view.removeFromSuperview(); $0.removeFromParent() })
     }
-    func MakeAPICall(){
-        createSpinnerView()
-        fetchPatientDetails { (patientDetailsData, error) in
-            let patientDetailViewModel = PatientDetailsViewModel(patientlist: patientDetailsData!)
-            DispatchQueue.main.async {
-                self.hideSpinnerView()
-                
-                if let firstname = patientDetailViewModel.FirstName, let lastname = patientDetailViewModel.LastName {
-                    self.nameLabel.text = "Name: \(lastname.uppercased()), \(firstname)"
-                }
-                if let address = patientDetailViewModel.Address,let nhsNumer = patientDetailViewModel.NhsNumber  {
-                    self.addressLAbel.text = "Address: \(address)"
-                    self.NHSNumber.text = "NSHNumber: \(nhsNumer)"
-                }
-            }
-        }
-    }
-    
-    func fetchPatientDetails(completion: @escaping (_ response:PatientDetails?, _ error:Error?) -> ()){
+        /*
+         // MARK: - Navigation
+         
+         // In a storyboard-based application, you will often want to do a little preparation before navigation
+         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+         // Get the new view controller using segue.destination.
+         // Pass the selected object to the new view controller.
+         }
+         */
         
-        let resource = URLFactory.preparePatientDetailsResource(Id: self.patientId)
-        WebService().load(resource!) { (result) in
-            switch result{
-            case .error(let error, _):
-                completion(nil, error)
-            case .success(let response, _):
-                print(response)
-                completion(response,nil)
-            }
-            
-        }
-    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

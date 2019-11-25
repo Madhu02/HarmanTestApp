@@ -27,12 +27,3 @@ struct PatientList: Codable {
         case firstName = "FirstName"
     }
 }
-
-
-//struct PatientsResultsModel {
-//
-//    var results = [PatientsModel]()
-//    init(patientList: [PatientsModel]) {
-//        self.results = patientList
-//    }
-//}
